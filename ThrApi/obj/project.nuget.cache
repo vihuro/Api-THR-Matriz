@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "Brq0WmHMUSsvRu6iwcLLJ/jH5wm8yKaPQOWag5b6ScZWoohGuZHObZjXe0VPiYOY5PLLvT4nTsorvk3iUtlNfw==",
+  "dgSpecHash": "PWJpI8R+hPIxVlteC8oymnIuJQPxvgJcgVYKME/2L+Ilr+89D1Hq2GtpWIAAEexMnK9/lsBx7eic8YP85nj8Sw==",
   "success": true,
   "projectFilePath": "C:\\Users\\thr\\source\\repos\\ThrApi\\ThrApi\\ThrApi.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\thr\\.nuget\\packages\\bcrypt.net-core\\1.6.0\\bcrypt.net-core.1.6.0.nupkg.sha512",
     "C:\\Users\\thr\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\thr\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.0\\microsoft.aspnetcore.authentication.jwtbearer.6.0.0.nupkg.sha512",
     "C:\\Users\\thr\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\6.0.10\\microsoft.aspnetcore.cryptography.internal.6.0.10.nupkg.sha512",

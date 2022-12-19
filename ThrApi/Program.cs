@@ -5,6 +5,11 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using ThrApi.Interface.Login;
+using ThrApi.Service.Login;
+using ThrApi.Service.JWT;
+using ThrApi.Interface.Estoque;
+using ThrApi.Service.Estoque;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,27 +19,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEntityFrameworkNpgsql()
     .AddDbContext<UsuarioContext>(options =>
-    options.UseNpgsql("Host=localhost;Port=5432;Pooling=true;DataBase=ApiDotNetTHR;User Id=postgres; Password = POSTGRES"));
+    options.UseNpgsql("Host=localhost;Port=5432;Pooling=true;DataBase=ApiDotNetTHR;User Id=postgres; Password = postgres"));
 
-/* ---------------- aqui foi um teste
-var appSettingsSection = 
-builder.Services.AddAuthentication(x =>
-{
-    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-})
-    .AddJwtBearer(x =>
-    {
-        x.RequireHttpsMetadata = false;
-        x.SaveToken = true;
-        x.TokenValidationParameters = new TokenValidationParameters
-        {
-            ValidateIssuerSigningKey = true,
-            IssuerSigningKey = new SymmetricSecurityKey("dsdsds"),
-            ValidateIssuer = false,
-            ValidateAudience = false
-        };
-    });-------------------------*/
+builder.Services.AddScoped<ILogin, LoginService>();
+builder.Services.AddScoped<IClaims, ClaimsService>();
+builder.Services.AddScoped<ICreateToken, CreateToken>();
+builder.Services.AddScoped<IProdutosService, ProdutosService>();
 
 var key = Encoding.ASCII.GetBytes("ajlKjLASJUISHIUO@2423");
 builder.Services.AddAuthentication(x =>
@@ -73,7 +63,15 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors(c =>
+{
+    c.AllowAnyHeader();
+    c.AllowAnyMethod();
+    c.AllowAnyOrigin();
+});
+
 app.UseHttpsRedirection();
+builder.Services.AddCors();
 
 app.UseAuthentication();
 app.UseAuthorization();
