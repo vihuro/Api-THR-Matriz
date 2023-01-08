@@ -54,3 +54,4 @@ C:\Users\thr\source\repos\ThrApi\ThrApi\obj\Debug\net6.0\staticwebassets\msbuild
 C:\Users\thr\source\repos\ThrApi\ThrApi\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.ThrApi.props
 C:\Users\thr\source\repos\ThrApi\ThrApi\obj\Debug\net6.0\staticwebassets.pack.json
 C:\Users\thr\source\repos\ThrApi\ThrApi\bin\Debug\net6.0\BCrypt.Net-Core.dll
+C:\Users\thr\source\repos\ThrApi\ThrApi\bin\Debug\net6.0\RestSharp.dll

@@ -8,8 +8,22 @@ namespace ThrApi.Service.JWT
     {
         public static bool ValidarClaimsUsuario(HttpContext context, string claimName, string claimValue)
         {
-            return context.User.Identity.IsAuthenticated &&
-                context.User.Claims.Any(c => c.Type == claimName && c.Value.Split(',').Contains(claimValue));
+
+            var permissions = claimValue.Split(',');
+
+
+            if(context.User.Identity.IsAuthenticated &&
+                context.User.Claims.Any(c => c.Type == claimName)) { 
+                for(int i =0; i< permissions.Length; i++)
+                {
+                    if(context.User.Claims.Any(x => x.Value == permissions[i].ToString()))
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
         }
     }
     public class ClaimsAuthorizeAttibute : TypeFilterAttribute

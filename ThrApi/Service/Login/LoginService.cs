@@ -1,14 +1,11 @@
 ﻿using ThrApi.Dto.Login;
 using ThrApi.Models.Login;
 using ThrApi.Context;
-using BCrypt.Net;
 using ThrApi.Interface.Login;
 using ThrApi.Service.CustonException;
-using System.IdentityModel.Tokens.Jwt;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
 using System.Security.Claims;
-using ThrApi.Service.JWT;
+using Microsoft.Extensions.Options;
+using ThrApi.Settings;
 
 namespace ThrApi.Service.Login
 {
@@ -31,14 +28,20 @@ namespace ThrApi.Service.Login
                 var User = context.Usuario.FirstOrDefault(x => x.Apelido == dto.Apelido);
                 if(User == null)
                 {
-                    throw new ExceptionService("Usuário ou senha inválidos!");
+                    throw new ExceptionService("Usuário ou senha inválidos!")
+                    {
+                        HResult = 404
+                    };
                 }
 
                 var Valid = BCrypt.Net.BCrypt.Verify(dto.Senha, User.Senha);
 
                 if (!Valid)
                 {
-                    throw new ExceptionService("Usuário ou senha inválidos!");
+                    throw new ExceptionService("Usuário ou senha inválidos!")
+                    {
+                        HResult = 404
+                    };
                 }
 
                 var token = createToken.Create(User);
@@ -54,9 +57,9 @@ namespace ThrApi.Service.Login
 
                 return usuarioLogado;
             }
-            catch(Exception ex)
+            catch(ExceptionService ex)
             {
-                throw new ExceptionService(ex.Message);
+                throw new ExceptionService(ex.Message) { HResult = ex.HResult };
             }
 
 

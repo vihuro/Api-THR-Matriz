@@ -1,7 +1,13 @@
-﻿namespace ThrApi.Service.CustonException
+﻿using Microsoft.AspNetCore.Mvc;
+using RestSharp;
+
+namespace ThrApi.Service.CustonException
 {
     public class ExceptionService : Exception
     {
-        public ExceptionService(string message) : base(message) { }
+        public ExceptionService(string message) : base(message){}
+
+
+
     }
 }

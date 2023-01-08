@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "PWJpI8R+hPIxVlteC8oymnIuJQPxvgJcgVYKME/2L+Ilr+89D1Hq2GtpWIAAEexMnK9/lsBx7eic8YP85nj8Sw==",
+  "dgSpecHash": "Ynns/hEt3cqpyNqm5/JhApzClgzwTgKR+3TleAQZ0baQO0oYOlMwOvJ3uZG66Muvw2hWTcQ8lyzuKQKOjhJ7jw==",
   "success": true,
   "projectFilePath": "C:\\Users\\thr\\source\\repos\\ThrApi\\ThrApi\\ThrApi.csproj",
   "expectedPackageFiles": [
@@ -40,6 +40,7 @@
     "C:\\Users\\thr\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
     "C:\\Users\\thr\\.nuget\\packages\\npgsql\\6.0.7\\npgsql.6.0.7.nupkg.sha512",
     "C:\\Users\\thr\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\6.0.7\\npgsql.entityframeworkcore.postgresql.6.0.7.nupkg.sha512",
+    "C:\\Users\\thr\\.nuget\\packages\\restsharp\\108.0.3\\restsharp.108.0.3.nupkg.sha512",
     "C:\\Users\\thr\\.nuget\\packages\\swashbuckle.aspnetcore\\6.4.0\\swashbuckle.aspnetcore.6.4.0.nupkg.sha512",
     "C:\\Users\\thr\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.4.0\\swashbuckle.aspnetcore.swagger.6.4.0.nupkg.sha512",
     "C:\\Users\\thr\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.4.0\\swashbuckle.aspnetcore.swaggergen.6.4.0.nupkg.sha512",

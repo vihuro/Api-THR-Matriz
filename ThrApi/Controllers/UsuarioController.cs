@@ -44,9 +44,8 @@ namespace ThrApi.Controllers
             }
 
         }
-
-        [ClaimsAuthorizeAttibute("Produto", "Admin")]
         [HttpGet]
+        [ClaimsAuthorizeAttibute("Produto", "Admin")]
         public IActionResult OlaDotNet()
         {
             return Ok("aqui, tem todos os segredos da empresa hahahahahahahaha");
@@ -74,10 +73,14 @@ namespace ThrApi.Controllers
             {
                 var Token = login.Logar(dto);
 
-                return Token;
+                return Ok(Token);
             }
             catch (ExceptionService ex)
             {
+                if (ex.HResult == 404)
+                {
+                    return NotFound(ex.Message);
+                }
 
                 return UnprocessableEntity(ex.Message);
             }

@@ -10,6 +10,7 @@ using ThrApi.Service.Login;
 using ThrApi.Service.JWT;
 using ThrApi.Interface.Estoque;
 using ThrApi.Service.Estoque;
+using ThrApi.Settings;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,16 +18,30 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+var connectionString = builder.Configuration.GetConnectionString("SistemaTHR");
+
 builder.Services.AddEntityFrameworkNpgsql()
     .AddDbContext<UsuarioContext>(options =>
-    options.UseNpgsql("Host=localhost;Port=5432;Pooling=true;DataBase=ApiDotNetTHR;User Id=postgres; Password = postgres"));
+    options.UseNpgsql(connectionString));
+
+builder.Services.AddEntityFrameworkNpgsql()
+    .AddDbContext<EstoqueContext>(options =>
+    options.UseNpgsql(connectionString));
 
 builder.Services.AddScoped<ILogin, LoginService>();
 builder.Services.AddScoped<IClaims, ClaimsService>();
 builder.Services.AddScoped<ICreateToken, CreateToken>();
 builder.Services.AddScoped<IProdutosService, ProdutosService>();
 
-var key = Encoding.ASCII.GetBytes("ajlKjLASJUISHIUO@2423");
+//JWT
+
+var appSettingSection = builder.Configuration.GetSection("AppSettings");
+builder.Services.Configure<AppSettings>(appSettingSection);
+
+var appSettings = appSettingSection.Get<AppSettings>();
+
+var key = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(appSettings.Secret));
+
 builder.Services.AddAuthentication(x =>
 {
     x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -39,7 +54,7 @@ builder.Services.AddAuthentication(x =>
     x.TokenValidationParameters = new TokenValidationParameters
     {
         ValidateIssuerSigningKey = true,
-        IssuerSigningKey = new SymmetricSecurityKey(key),
+        IssuerSigningKey = key,
         ValidateIssuer = false,
         ValidateAudience = false
 
